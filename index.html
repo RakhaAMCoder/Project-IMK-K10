@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-Lab | Student</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+:root {
+    --primary-blue: #1e40af;
+    --primary-dark: #0f172a;
+    --primary-red: #dc2626;
+    --accent-orange: #ea580c;
+    --accent-blue: #2563eb;
+    --light-gray: #f8fafc;
+    --dark-gray: #1e293b;
+    --text-light: #64748b;
+    --text-dark: #0f172a;
+    --border-light: #e2e8f0;
+    --border-dark: #334155;
+    --success-green: #10b981;
+    --warning-yellow: #f59e0b;
+}
+
+body {
+    background-color: var(--light-gray);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding-bottom: 80px;
+    transition: all 0.3s ease;
+    overflow-x: hidden;
+}
+
+body.dark-mode {
+    background-color: var(--primary-dark);
+    color: white;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header dengan Logo */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 10px 0;
+}
+
+/* Bagian kiri header (logo + judul) */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Jarak antara logo dan teks */
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Image - Ukuran 40px */
+.site-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 5px;
+}
+
+.dark-mode .site-logo {
+    filter: brightness(0.9);
+    background-color: var(--dark-gray);
+}
+
+.header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 0; /* Hapus margin-right: auto */
+}
+
+.dark-mode .header h1 {
+    color: white;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(30, 64, 175, 0.2);
+}
+
+/* Lab Section */
+.lab-section {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+    border: 1px solid var(--border-light);
+}
+
+.dark-mode .lab-section {
+    background-color: var(--dark-gray);
+    border-color: var(--border-dark);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    color: var(--primary-dark);
+}
+
+.dark-mode .section-title {
+    color: white;
+}
+
+.section-subtitle {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--border-light);
+    margin: 25px 0;
+}
+
+.dark-mode .divider {
+    background-color: var(--border-dark);
+}
+
+/* Class Card */
+.class-card {
+    margin-bottom: 25px;
+}
+
+.class-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: var(--primary-dark);
+}
+
+.dark-mode .class-title {
+    color: white;
+}
+
+.class-title i {
+    margin-right: 10px;
+    color: var(--primary-red);
+    font-size: 18px;
+}
+
+.class-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.class-detail i {
+    width: 24px;
+    color: var(--accent-orange);
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.class-schedule {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.class-schedule i {
+    width: 24px;
+    color: var(--accent-blue);
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.see-class-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 5px;
+    text-align: center;
+    transition: all 0.2s;
+    border: none;
+    width: 100%;
+    font-size: 15px;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+    cursor: pointer;
+}
+
+.see-class-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(30, 64, 175, 0.3);
+}
+
+.see-class-btn i {
+    margin-right: 8px;
+}
+
+/* Settings Button */
+.settings-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s;
+    border: none;
+}
+
+.settings-btn:hover {
+    transform: scale(1.05) rotate(15deg);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+}
+
+.settings-btn img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* Settings Panel */
+.settings-panel {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background-color: white;
+    z-index: 101;
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.dark-mode .settings-panel {
+    background-color: var(--dark-gray);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.settings-panel.show {
+    right: 0;
+}
+
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: none;
+    transition: opacity 0.3s;
+}
+
+.settings-overlay.show {
+    display: block;
+}
+
+.settings-header {
+    padding: 25px 20px 20px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+    color: white;
+    border-radius: 0 0 0 20px;
+}
+
+.settings-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.settings-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.settings-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.close-settings {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.close-settings:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Settings Item */
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.dark-mode .settings-item {
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.settings-label {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.settings-label i {
+    margin-right: 12px;
+    color: var(--accent-blue);
+    font-size: 18px;
+}
+
+/* Notification Button */
+.notification-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(135deg, var(--success-green), #34d399);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.notification-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+}
+
+.notification-btn i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.dark-mode .toggle-slider {
+    background-color: #475569;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .toggle-slider {
+    background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+}
+
+/* Notification Popup */
+.notification-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    background-color: white;
+    z-index: 102;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    display: none;
+}
+
+.dark-mode .notification-popup {
+    background-color: var(--dark-gray);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.notification-popup.show {
+    display: flex;
+}
+
+.notification-popup-header {
+    padding: 25px 20px 20px;
+    background: linear-gradient(135deg, var(--success-green), #34d399);
+    color: white;
+}
+
+.notification-popup-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.notification-popup-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.notification-popup-content {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.close-notification-popup {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.close-notification-popup:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Module Section */
+.module-section {
+    background-color: var(--light-gray);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.dark-mode .module-section {
+    background-color: var(--primary-dark);
+}
+
+.module-section h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+}
+
+.dark-mode .module-section h3 {
+    color: white;
+}
+
+.module-section h3 i {
+    margin-right: 10px;
+    color: var(--accent-blue);
+}
+
+/* Deadline Section */
+.deadline-section {
+    background-color: var(--light-gray);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.dark-mode .deadline-section {
+    background-color: var(--primary-dark);
+}
+
+.deadline-section h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+}
+
+.dark-mode .deadline-section h3 {
+    color: white;
+}
+
+.deadline-section h3 i {
+    margin-right: 10px;
+    color: var(--warning-yellow);
+}
+
+/* Module Item */
+.module-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.dark-mode .module-item {
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.module-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.module-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent-blue), #60a5fa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.module-text {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.module-text h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: var(--primary-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dark-mode .module-text h4 {
+    color: white;
+}
+
+.module-text p {
+    font-size: 13px;
+    color: var(--text-light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Deadline Item */
+.deadline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: white;
+    border-left: 4px solid var(--warning-yellow);
+}
+
+.dark-mode .deadline-item {
+    background-color: var(--dark-gray);
+}
+
+.deadline-item.urgent {
+    border-left: 4px solid var(--primary-red);
+    background-color: rgba(220, 38, 38, 0.05);
+}
+
+.dark-mode .deadline-item.urgent {
+    background-color: rgba(220, 38, 38, 0.1);
+}
+
+.deadline-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.deadline-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--warning-yellow), #fbbf24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.deadline-item.urgent .deadline-icon {
+    background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+}
+
+.deadline-text {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.deadline-text h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: var(--primary-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dark-mode .deadline-text h4 {
+    color: white;
+}
+
+.deadline-text p {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* Fullscreen Option */
+.fullscreen-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: var(--light-gray);
+    border-radius: 12px;
+}
+
+.dark-mode .fullscreen-option {
+    background-color: var(--primary-dark);
+}
+
+.fullscreen-option input {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-blue);
+}
+
+.fullscreen-option label {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* Footer */
+.settings-footer {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+    border-top: 1px solid var(--border-light);
+}
+
+.dark-mode .settings-footer {
+    border-top: 1px solid var(--border-dark);
+}
+
+.footer-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .settings-panel {
+        width: 85%;
+        right: -85%;
+    }
+    
+    .notification-popup {
+        width: 95%;
+    }
+    
+    /* Logo Responsive */
+    .site-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+    
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header-left {
+        gap: 10px; /* Kurangi jarak di mobile */
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header dengan Logo -->
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="Logo I-Lab.png" alt="i-Lab Logo" class="site-logo">
+                </div>
+            <h1>i-Lab | Student</h1>
+        </div>
+        <div class="profile-icon">S</div>
+    </div>
+        
+        <!-- Lab Section -->
+        <div class="lab-section">
+            <h2 class="section-title">My Class</h2>
+            <p class="section-subtitle">Schedule</p>
+            
+            <div class="divider"></div>
+            
+            <!-- Class 1 -->
+            <div class="class-card">
+                <h3 class="class-title">
+                    <i class="fas fa-laptop-code"></i> Pemrograman Lanjut E
+                </h3>
+                
+                <div class="class-detail">
+                    <i class="fas fa-map-marker-alt"></i> Lab E - B3
+                </div>
+                
+                <div class="class-schedule">
+                    <i class="far fa-calendar-alt"></i> Friday, 15:30 - 17:10
+                </div>
+                
+                <button class="see-class-btn">
+                    <i class="fas fa-external-link-alt"></i> See Class
+                </button>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- Class 2 -->
+            <div class="class-card">
+                <h3 class="class-title">
+                    <i class="fas fa-network-wired"></i> Jaringan Komputer D
+                </h3>
+                
+                <div class="class-detail">
+                    <i class="fas fa-map-marker-alt"></i> Lab A - B23
+                </div>
+                
+                <div class="class-schedule">
+                    <i class="far fa-calendar-alt"></i> Thursday, 07:00 - 08:40
+                </div>
+                
+                <button class="see-class-btn">
+                    <i class="fas fa-external-link-alt"></i> See Class
+                </button>
+            </div>
+
+            <div class="divider"></div>
+            
+            <!-- Class 3 -->
+            <div class="class-card">
+                <h3 class="class-title">
+                    <i class="fas fa-network-wired"></i> Komunikasi Data D
+                </h3>
+                
+                <div class="class-detail">
+                    <i class="fas fa-map-marker-alt"></i> Lab A - B18
+                </div>
+                
+                <div class="class-schedule">
+                    <i class="far fa-calendar-alt"></i> Thursday, 08:40 - 10:20
+                </div>
+                
+                <button class="see-class-btn">
+                    <i class="fas fa-external-link-alt"></i> See Class
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings Button -->
+    <button class="settings-btn" id="settingsBtn">
+        <img src="LogoSettings.png" alt="Settings">
+    </button>
+    
+    <!-- Settings Overlay -->
+    <div class="settings-overlay" id="settingsOverlay"></div>
+    
+    <!-- Settings Panel -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h3 class="settings-title">Lab Settings</h3>
+            <p class="settings-subtitle">Manage your preferences</p>
+            <button class="close-settings" id="closeSettings">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="settings-content">
+            <!-- Notification Button (Buka popup notifikasi) -->
+            <button class="notification-btn" id="notificationBtn">
+                <i class="fas fa-bell"></i> Notification Settings
+            </button>
+            
+            <!-- Dark Mode Toggle -->
+            <div class="settings-item">
+                <span class="settings-label">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </span>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <label for="darkModeToggle" class="toggle-slider"></label>
+                </div>
+            </div>
+            
+            <!-- Fullscreen Option -->
+            <div class="fullscreen-option">
+                <input type="checkbox" id="fullscreen">
+                <label for="fullscreen">Fullscreen Mode</label>
+            </div>
+        </div>
+        
+        <div class="settings-footer">
+            <i class="fas fa-info-circle"></i> 
+            <a href="https://infotech.umm.ac.id" target="_blank" class="footer-link">infotech.unm.ac.id</a>
+        </div>
+    </div>
+    
+    <!-- Notification Popup -->
+    <div class="notification-popup" id="notificationPopup">
+        <div class="notification-popup-header">
+            <button class="close-notification-popup" id="closeNotificationPopup">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="notification-popup-title">Notification Settings</h3>
+            <p class="notification-popup-subtitle">Manage your notifications</p>
+        </div>
+        
+        <div class="notification-popup-content">
+            <!-- Module Notifications Section -->
+            <div class="module-section">
+                <h3><i class="fas fa-book"></i> Module Notifications</h3>
+                
+                <!-- Module 1 -->
+                <div class="module-item">
+                    <div class="module-info">
+                        <div class="module-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="module-text">
+                            <h4>Pemrograman Lanjut</h4>
+                            <p>Get notified about new materials</p>
+                        </div>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="module1" checked>
+                        <label for="module1" class="toggle-slider"></label>
+                    </div>
+                </div>
+                
+                <!-- Module 2 -->
+                <div class="module-item">
+                    <div class="module-info">
+                        <div class="module-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="module-text">
+                            <h4>Jaringan Komputer</h4>
+                            <p>Get notified about new materials</p>
+                        </div>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="module2" checked>
+                        <label for="module2" class="toggle-slider"></label>
+                    </div>
+                </div>
+                
+                <!-- Module 3 -->
+                <div class="module-item">
+                    <div class="module-info">
+                        <div class="module-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="module-text">
+                            <h4>Komunikasi Data</h4>
+                            <p>Get notified about new materials</p>
+                        </div>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="module3">
+                        <label for="module3" class="toggle-slider"></label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deadline Notifications Section -->
+            <div class="deadline-section">
+                <h3><i class="fas fa-clock"></i> Deadline Tugas</h3>
+                
+                <!-- Deadline 1 (Pemrograman Lanjut) -->
+                <div class="deadline-item urgent">
+                    <div class="deadline-info">
+                        <div class="deadline-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="deadline-text">
+                            <h4>Pemrograman Lanjut - Tugas Akhir</h4>
+                            <p>Deadline: 2 hari lagi</p>
+                        </div>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="deadline1" checked>
+                        <label for="deadline1" class="toggle-slider"></label>
+                    </div>
+                </div>
+                
+                <!-- Deadline 2 (Jaringan Komputer) -->
+                <div class="deadline-item">
+                    <div class="deadline-info">
+                        <div class="deadline-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="deadline-text">
+                            <h4>Jaringan Komputer - Project</h4>
+                            <p>Deadline: 1 minggu lagi</p>
+                        </div>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="deadline2" checked>
+                        <label for="deadline2" class="toggle-slider"></label>
+                    </div>
+                </div>
+                
+                <!-- Deadline 3 (Komunikasi Data) -->
+                <div class="deadline-item">
+                    <div class="deadline-info">
+                        <div class="deadline-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="deadline-text">
+                            <h4>Komunikasi Data - Laporan</h4>
+                            <p>Deadline: 2 minggu lagi</p>
+                        </div>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="deadline3">
+                        <label for="deadline3" class="toggle-slider"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const settingsOverlay = document.getElementById('settingsOverlay');
+        const closeSettings = document.getElementById('closeSettings');
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationPopup = document.getElementById('notificationPopup');
+        const closeNotificationPopup = document.getElementById('closeNotificationPopup');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const fullscreenCheckbox = document.getElementById('fullscreen');
+        
+        // Toggle Settings Panel
+        settingsBtn.addEventListener('click', () => {
+            settingsPanel.classList.add('show');
+            settingsOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeSettings.addEventListener('click', () => {
+            closeSettingsPanel();
+        });
+        
+        settingsOverlay.addEventListener('click', () => {
+            if (notificationPopup.classList.contains('show')) {
+                closeNotificationPopupPanel();
+            } else {
+                closeSettingsPanel();
+            }
+        });
+        
+        function closeSettingsPanel() {
+            settingsPanel.classList.remove('show');
+            settingsOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Open Notification Popup
+        notificationBtn.addEventListener('click', () => {
+            settingsPanel.classList.remove('show');
+            notificationPopup.classList.add('show');
+            settingsOverlay.classList.add('show');
+        });
+        
+        // Close Notification Popup
+        closeNotificationPopup.addEventListener('click', () => {
+            closeNotificationPopupPanel();
+        });
+        
+        function closeNotificationPopupPanel() {
+            notificationPopup.classList.remove('show');
+            settingsPanel.classList.add('show');
+        }
+        
+        // Dark Mode Toggle
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+            localStorage.setItem('darkMode', darkModeToggle.checked);
+        });
+        
+        // Fullscreen Toggle
+        fullscreenCheckbox.addEventListener('change', () => {
+            if (fullscreenCheckbox.checked) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                }
+                showNotification("Fullscreen mode activated", "success");
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+                showNotification("Fullscreen mode deactivated", "info");
+            }
+        });
+        
+        // Module notification toggles
+        document.getElementById('module1').addEventListener('change', function() {
+            const moduleName = "Pemrograman Lanjut";
+            const status = this.checked ? "diaktifkan" : "dinonaktifkan";
+            showNotification(`Notifikasi modul ${moduleName} ${status}`, this.checked ? "success" : "info");
+            localStorage.setItem('module1', this.checked);
+        });
+        
+        document.getElementById('module2').addEventListener('change', function() {
+            const moduleName = "Jaringan Komputer";
+            const status = this.checked ? "diaktifkan" : "dinonaktifkan";
+            showNotification(`Notifikasi modul ${moduleName} ${status}`, this.checked ? "success" : "info");
+            localStorage.setItem('module2', this.checked);
+        });
+        
+        document.getElementById('module3').addEventListener('change', function() {
+            const moduleName = "Komunikasi Data";
+            const status = this.checked ? "diaktifkan" : "dinonaktifkan";
+            showNotification(`Notifikasi modul ${moduleName} ${status}`, this.checked ? "success" : "info");
+            localStorage.setItem('module3', this.checked);
+        });
+        
+        // Deadline notification toggles
+        document.getElementById('deadline1').addEventListener('change', function() {
+            const taskName = "Tugas Akhir Pemrograman Lanjut";
+            const status = this.checked ? "diaktifkan" : "dinonaktifkan";
+            showNotification(`Notifikasi deadline "${taskName}" ${status}`, this.checked ? "success" : "info");
+            localStorage.setItem('deadline1', this.checked);
+        });
+        
+        document.getElementById('deadline2').addEventListener('change', function() {
+            const taskName = "Project Jaringan Komputer";
+            const status = this.checked ? "diaktifkan" : "dinonaktifkan";
+            showNotification(`Notifikasi deadline "${taskName}" ${status}`, this.checked ? "success" : "info");
+            localStorage.setItem('deadline2', this.checked);
+        });
+        
+        document.getElementById('deadline3').addEventListener('change', function() {
+            const taskName = "Laporan Komunikasi Data";
+            const status = this.checked ? "diaktifkan" : "dinonaktifkan";
+            showNotification(`Notifikasi deadline "${taskName}" ${status}`, this.checked ? "success" : "info");
+            localStorage.setItem('deadline3', this.checked);
+        });
+        
+        // See Class buttons
+        document.querySelectorAll('.see-class-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                showNotification("Membuka detail kelas...", "info");
+            });
+        });
+        
+        // Load saved preferences on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load dark mode preference
+            const darkModeSaved = localStorage.getItem('darkMode') === 'true';
+            darkModeToggle.checked = darkModeSaved;
+            document.body.classList.toggle('dark-mode', darkModeSaved);
+            
+            // Load module preferences
+            document.getElementById('module1').checked = localStorage.getItem('module1') !== 'false';
+            document.getElementById('module2').checked = localStorage.getItem('module2') !== 'false';
+            document.getElementById('module3').checked = localStorage.getItem('module3') === 'true';
+            
+            // Load deadline preferences
+            document.getElementById('deadline1').checked = localStorage.getItem('deadline1') !== 'false';
+            document.getElementById('deadline2').checked = localStorage.getItem('deadline2') !== 'false';
+            document.getElementById('deadline3').checked = localStorage.getItem('deadline3') === 'true';
+            
+            // Simulate urgent deadline notifications
+            checkDeadlines();
+        });
+        
+        // Handle fullscreen change events
+        document.addEventListener('fullscreenchange', updateFullscreenCheckbox);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenCheckbox);
+        
+        function updateFullscreenCheckbox() {
+            const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+            fullscreenCheckbox.checked = !!isFullscreen;
+        }
+        
+        // Show notification function
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            // Add styles for notification
+            const style = document.createElement('style');
+            style.textContent = `
+                .notification {
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: ${type === 'success' ? 'linear-gradient(135deg, #10b981, #34d399)' : 'linear-gradient(135deg, #3b82f6, #60a5fa)'};
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 12px;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+                    z-index: 1000;
+                    display: flex;
+                    align-items: center;
+                    animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+                    max-width: 90%;
+                }
+                .notification-content {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+                }
+                .notification-content i {
+                    margin-right: 10px;
+                    font-size: 18px;
+                }
+                @keyframes slideIn {
+                    from { top: -100px; opacity: 0; }
+                    to { top: 20px; opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; visibility: hidden; }
+                }
+            `;
+            
+            // Add to document
+            document.head.appendChild(style);
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+                if (style.parentNode) {
+                    style.parentNode.removeChild(style);
+                }
+            }, 3000);
+        }
+        
+        // Function to check deadlines and show urgent notifications
+        function checkDeadlines() {
+            // Simulate checking deadlines
+            setTimeout(() => {
+                if (document.getElementById('deadline1').checked) {
+                    showNotification("Penting: Deadline Tugas Akhir Pemrograman Lanjut tinggal 2 hari!", "warning");
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
